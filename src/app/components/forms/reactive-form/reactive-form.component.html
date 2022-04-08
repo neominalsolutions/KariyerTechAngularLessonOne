@@ -1,0 +1,24 @@
+<!-- form tanımını formGroup directive ile yapıyoruz -->
+<!-- form binding işlemi yapıyoruz -->
+<form [formGroup]="userForm" (ngSubmit)="Send()">
+
+    <input formControlName="username" placeholder="username">
+    <span
+        *ngIf="userForm.get('username')?.hasError('required') && (userForm.get('username')?.dirty || userForm.get('username')?.touched)">
+        Kullanıcı Parolası boş geçilemez
+    </span>
+    <br>
+    <input formControlName="password" placeholder="password">
+    <span
+        *ngIf="userForm.get('password')?.hasError('required') && (userForm.get('password')?.dirty || userForm.get('password')?.touched)">
+        Kullanıcı Parolası boş geçilemez
+    </span>
+
+    <span *ngIf="userForm.get('password')?.hasError('minlength')">
+        Mix 6 karakter
+    </span>
+    <br>
+
+    <input [disabled]="userForm.invalid" type="submit" value="Gönder">
+
+</form>

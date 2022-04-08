@@ -1,0 +1,23 @@
+<form #userForm="ngForm">
+    <input name="username" value="" placeholder="username" ngModel required>
+
+    <span *ngIf="userForm.controls['username']?.hasError('required') && 
+    (userForm.controls['username'].dirty || userForm.controls['username'].touched)">
+        User Boş geçilemez
+    </span>
+    <input name="password" type="password" placeholder="password" ngModel required minlength="6">
+    <span
+        *ngIf="userForm.controls['password']?.hasError('required') && (userForm.controls['username'].dirty || userForm.controls['username'].touched)">
+        Password Boş geçilemez
+    </span>
+    <span *ngIf="userForm.controls['password']?.hasError('minlength')">
+        6 karakterden az giriş yapamazsınız
+    </span>
+    <input [disabled]="userForm.invalid" type="submit" value="Send">
+</form>
+
+<!-- form controllere müdahaleyi ve form contrroller için clientside validasyon kavramlarını hepsini form template üzerinde yapıyoruz. -->
+
+<!-- userForm.invalid olması durumunda  -->
+
+<!-- ngForm denilen directive sayesinde template driven form tanımladık. -->

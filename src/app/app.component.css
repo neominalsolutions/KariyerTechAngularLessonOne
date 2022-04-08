@@ -3,3 +3,13 @@
   width: 100%;
   min-height: 20rem;
 }
+
+.active {
+  background-color: blue;
+  color: white;
+}
+
+.passive {
+  background-color: gray;
+  color: black;
+}

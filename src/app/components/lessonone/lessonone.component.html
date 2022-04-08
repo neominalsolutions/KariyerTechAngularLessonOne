@@ -1,0 +1,116 @@
+<div class="bg-color">
+
+    <!-- property binding interpolation -->
+
+    {{title}}
+
+
+    <!-- (eventName) buit-in eventleri var -->
+
+    <button (click)="clickMe()">Beni Tıkla</button>
+
+    <!-- change detection mekanizması sayesinde hmtl ve ts dosyası güncel olan değeri yakalr -->
+
+    <button (click)="counter = counter + 1">(+)</button>
+    <button (click)="counter = counter - 1">(-)</button>
+
+
+    <span>Değer: {{counter}}</span>
+
+    <!-- bir html elementine uygulanan htmlde olmayan anguların kazandırdığı özelliklere directive deriz. *ngIf ise built-in drective -->
+
+    <!-- html domda olmayan bir elementin bir koşula göre domda görünmesi sağlamak -->
+
+    <!-- *ngIf html dom üzerine append ve remove dan söz edebiliriz. -->
+    <span *ngIf="counter > 10"> Counter 10 da büyük</span>
+
+    <!-- two way binding ngModel ile yapabiliriz. hem eventbinding yapar hemde property binding yapar. [] property yazımı () event yazımı -->
+
+    <!-- ngModel FormsModule altından gelen bir özellik. AppModule bunu tanımlamak gerekir. -->
+
+    <input type="checkbox" [(ngModel)]="toggle" /> Toggle
+
+    <!-- display true yada false, style üzerinden display değiştirir.*ngIf ile hidden arasındaki fark ne??  -->
+    <span [hidden]="toggle"> {{toggle}} </span>
+
+
+    <!-- angular built-in directive *ngFor -->
+
+    <!-- jsdeki forof aynısıdır. -->
+    <ul *ngFor="let item of names let i=index">
+        <span>{{i}}. sıradaki arkadaşın adı {{item}} dir.</span>
+    </ul>
+
+
+    <!-- ngIf Template kullanımı  (yetkiye göre kullanımı idealdir)-->
+
+    <div *ngIf="counter > 10 then ifTemplate else elseTemplate"></div>
+
+
+    <ng-template #ifTemplate>
+        <div>if Template</div>
+    </ng-template>
+
+    <ng-template #elseTemplate>
+        <div>Else Template</div>
+    </ng-template>
+
+
+
+    <!-- ngSwitchcase -->
+
+    <!-- $event angularda bir form elementi ile çalışırken form elementi üzerinde değer yakalamaızı sağlayan bir angular service -->
+
+    <select (change)="SelectCity($event)">
+        <option value="34">Istanbul</option>
+        <option value="35">İzmir</option>
+        <option value="06">Ankara</option>
+    </select>
+
+
+    <div [ngSwitch]="selectedCity">
+        <div *ngSwitchCase="'34'">Türkiyenin En büyük Şehri</div>
+        <div *ngSwitchCase="'35'">Egenin Kalbi</div>
+        <div *ngSwitchCase="'06'">Başkent</div>
+        <div *ngSwitchDefault>Seçim Yok</div>
+    </div>
+
+    <!-- ngStyle -->
+
+    <div [ngStyle]="{color:'red',width:'100%',backgroundColor:'yellow'}">
+        Ng Style
+    </div>
+
+    <!-- ngClass -->
+
+    <!-- ternaryIf kullanımı yaptık -->
+    <button [ngClass]="isActive ? 'active':'passive'" (click)="isActive = !isActive">Click Me</button>
+
+
+    <!-- @Input() @OutPut -->
+    <!-- @Input componente başka bir componentten geçirilecek olan dinamik değerler -->
+    <!-- componentin farklı kofigürasyonlar ile dinamik olarak arayüz oluşturulması için yapılır -->
+    <!-- @OutPut() ilgili component içerisinde gerçekleşen bir olayın componentin çağrıldığı yere iletilmesi -->
+
+    <!-- @Output server side dillere event olarak karşımıza çıkar. -->
+
+
+    <!-- kendi componentlerimiz kullandığımız kısım -->
+    <!-- [inputName] yani bir componente input geçmek istersek dizi işareti içerisinde tanımlama yaparız  -->
+    <!-- event yakalamak için ise (CustomOutputName) tanımlarız. -->
+
+    <app-button [title]="'myButton'" [style]="{color:'red',width:'100%', fontSize:'20px'}"
+        (clicked)="showMessage($event)"></app-button>
+
+    <!-- instance alma örnek oluşturma -->
+    <app-button [title]="'myButton2'" [style]="{color:'yellow',width:'50%', fontSize:'12px'}"
+        (clicked)="showMessage($event)"></app-button>
+
+    <!-- component den gönderilen değeri $event ile okuruz. -->
+
+
+
+    <!-- template drive form örneği -->
+
+
+</div>
