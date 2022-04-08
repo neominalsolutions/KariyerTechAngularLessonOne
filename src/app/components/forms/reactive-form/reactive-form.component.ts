@@ -15,6 +15,7 @@ export class ReactiveFormComponent implements OnInit {
   })
 
 
+  // Angularda serviceler için DI işlemi yaparız
   constructor(public builder: FormBuilder) { }
 
   ngOnInit(): void {

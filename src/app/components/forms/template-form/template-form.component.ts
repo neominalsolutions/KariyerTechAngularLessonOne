@@ -15,4 +15,14 @@ export class TemplateFormComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  Send() {
+    // object literal
+    const param = {
+      username: this.username,
+      password: this.password
+    };
+
+    // api istek
+  }
+
 }

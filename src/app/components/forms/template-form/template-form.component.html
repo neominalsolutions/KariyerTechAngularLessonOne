@@ -1,4 +1,4 @@
-<form #userForm="ngForm">
+<form #userForm="ngForm" (ngSubmit)="Send()">
     <input name="username" value="" placeholder="username" ngModel required>
 
     <span *ngIf="userForm.controls['username']?.hasError('required') && 
